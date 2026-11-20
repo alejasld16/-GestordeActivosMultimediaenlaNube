@@ -9,4 +9,4 @@ cloudinary.config({
 
 cloudinary.api.ping()
   .then((r) => console.log('OK:', r))
-  .catch((e) => console.error('ERROR:', e.message));
+    .catch((e) => console.error('ERROR:', JSON.stringify(e, null, 2)));
