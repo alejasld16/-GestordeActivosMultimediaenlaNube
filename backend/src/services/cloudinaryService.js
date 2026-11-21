@@ -33,4 +33,30 @@ function subirACloudinary(buffer) {
   });
 }
 
-module.exports = { subirACloudinary };
+/**
+ * Borra un recurso de Cloudinary por su publicId.
+ * Hay que pasar el resource_type con el que se subió ("image" o "video"),
+ * si no Cloudinary no lo encuentra.
+ * "not found" se toma como éxito: el archivo ya no está en la nube.
+ */
+async function eliminarDeCloudinary(publicId, resourceType = 'image') {
+  let resultado;
+  try {
+    resultado = await cloudinary.uploader.destroy(publicId, {
+      resource_type: resourceType,
+      invalidate: true, // limpia la caché del CDN
+    });
+  } catch (error) {
+    console.error('Error de Cloudinary al borrar:', error.message || error);
+    throw new ErrorHttp(502, 'No se pudo eliminar el archivo de la nube. Intenta de nuevo.');
+  }
+
+  if (resultado.result !== 'ok' && resultado.result !== 'not found') {
+    console.error('Respuesta inesperada de Cloudinary al borrar:', resultado);
+    throw new ErrorHttp(502, 'No se pudo eliminar el archivo de la nube. Intenta de nuevo.');
+  }
+
+  return resultado;
+}
+
+module.exports = { subirACloudinary, eliminarDeCloudinary };
