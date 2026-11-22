@@ -1,0 +1,51 @@
+
+
+.galeria__barra { display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px; }
+.galeria__buscador {
+  background: var(--fondo); border: 1px solid var(--borde); border-radius: 8px;
+  padding: 10px 12px; color: var(--texto); font: inherit; width: 100%;
+}
+.galeria__buscador:focus { outline: none; border-color: var(--acento); }
+
+.galeria__filtros { display: flex; flex-wrap: wrap; gap: 8px; }
+.filtro {
+  background: transparent; color: var(--texto); border: 1px solid var(--borde);
+  border-radius: 999px; padding: 6px 14px; font: inherit; font-size: .88rem; cursor: pointer;
+}
+.filtro:hover { background: var(--borde); }
+.filtro--activo { background: var(--acento); border-color: var(--acento); color: #fff; }
+.filtro__n { opacity: .7; margin-left: 4px; font-size: .8rem; }
+
+.galeria__estado { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; padding: 12px 0; }
+.galeria__estado .spinner { display: inline-block; vertical-align: middle; margin-right: 6px; border-color: var(--borde); border-top-color: var(--acento); }
+
+.galeria__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 16px; margin-top: 16px; }
+
+.item { background: var(--fondo); border: 1px solid var(--borde); border-radius: var(--radio); overflow: hidden; display: flex; flex-direction: column; }
+.item__previa { height: 160px; background: #000; display: grid; place-items: center; }
+.item__previa img, .item__previa video { width: 100%; height: 100%; object-fit: cover; }
+.item__pdf { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.item__pdf a { color: var(--acento); font-size: .85rem; }
+
+.item__cuerpo { padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+.item__titulo { margin: 0; font-size: .95rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.etiqueta { align-self: flex-start; font-size: .72rem; font-weight: 600; padding: 2px 10px; border-radius: 999px; color: #fff; }
+.etiqueta--imagen { background: #2f8fd8; }
+.etiqueta--video { background: #8b5cf6; }
+.etiqueta--documento { background: #d9534f; }
+.etiqueta--otro { background: #6b7280; }
+
+.item__meta { margin: 0; display: grid; gap: 4px; font-size: .82rem; }
+.item__meta div { display: flex; justify-content: space-between; gap: 8px; }
+.item__meta dt { color: var(--suave); }
+.item__meta dd { margin: 0; text-align: right; }
+
+.boton--peligro { color: var(--error); border-color: rgba(239, 91, 91, .45); }
+.boton--peligro:hover:not(:disabled) { background: rgba(239, 91, 91, .12) !important; }
+.boton--peligro-solido { background: var(--error); }
+.boton--peligro-solido:hover:not(:disabled) { background: #d94848; }
+
+.item__confirmar { display: flex; flex-direction: column; gap: 8px; font-size: .82rem; color: var(--suave); }
+.item__confirmar .acciones { justify-content: flex-start; }
+.item__confirmar .boton { padding: 6px 12px; font-size: .85rem; }
