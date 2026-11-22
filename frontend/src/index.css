@@ -1,0 +1,83 @@
+:root {
+  --fondo: #0f1115;
+  --tarjeta: #181b22;
+  --borde: #2a2f3a;
+  --texto: #e8eaf0;
+  --suave: #9aa1b2;
+  --acento: #6c8cff;
+  --acento-hover: #5877f5;
+  --exito: #2fbf71;
+  --error: #ef5b5b;
+  --radio: 12px;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color: var(--texto);
+  background: var(--fondo);
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100vh; }
+
+.pagina { max-width: 1100px; margin: 0 auto; padding: 32px 20px 64px; }
+.encabezado h1 { margin: 0 0 4px; font-size: 1.8rem; }
+.encabezado p { margin: 0 0 28px; color: var(--suave); }
+
+.contenido { display: grid; gap: 24px; grid-template-columns: minmax(0, 380px) 1fr; align-items: start; }
+@media (max-width: 800px) { .contenido { grid-template-columns: 1fr; } }
+
+.tarjeta { background: var(--tarjeta); border: 1px solid var(--borde); border-radius: var(--radio); padding: 20px; }
+.tarjeta h2 { margin: 0 0 16px; font-size: 1.1rem; }
+.texto-suave { color: var(--suave); margin: 0; }
+
+.formulario { display: flex; flex-direction: column; gap: 14px; }
+
+.zona {
+  border: 2px dashed var(--borde); border-radius: var(--radio); padding: 20px;
+  min-height: 160px; display: grid; place-items: center; text-align: center;
+  cursor: pointer; transition: border-color .15s, background .15s;
+}
+.zona:hover, .zona:focus-visible { border-color: var(--acento); outline: none; }
+.zona--activa { border-color: var(--acento); background: rgba(108, 140, 255, .08); }
+.zona--bloqueada { cursor: not-allowed; opacity: .6; }
+.zona__icono { font-size: 1.8rem; color: var(--acento); }
+.zona__texto p { margin: 8px 0 4px; }
+.zona__texto small { color: var(--suave); }
+
+.previa { display: flex; flex-direction: column; align-items: center; gap: 10px; width: 100%; }
+.previa img, .previa video { max-width: 100%; max-height: 180px; border-radius: 8px; }
+.previa__pdf {
+  width: 90px; height: 110px; border-radius: 8px; display: grid; place-items: center;
+  background: #2b1d1d; color: var(--error); font-weight: 700; letter-spacing: 1px;
+}
+.previa__info { display: flex; flex-direction: column; gap: 2px; max-width: 100%; }
+.previa__info strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.previa__info span { color: var(--suave); font-size: .85rem; text-transform: capitalize; }
+
+.campo { display: flex; flex-direction: column; gap: 6px; font-size: .9rem; color: var(--suave); }
+.campo input {
+  background: var(--fondo); border: 1px solid var(--borde); border-radius: 8px;
+  padding: 10px 12px; color: var(--texto); font: inherit;
+}
+.campo input:focus { outline: none; border-color: var(--acento); }
+
+.progreso { position: relative; height: 28px; background: var(--fondo); border: 1px solid var(--borde); border-radius: 8px; overflow: hidden; }
+.progreso__barra { position: absolute; inset: 0 auto 0 0; background: var(--acento); transition: width .2s; }
+.progreso span { position: relative; display: block; text-align: center; line-height: 26px; font-size: .85rem; }
+
+.alerta { display: flex; justify-content: space-between; gap: 10px; align-items: flex-start; padding: 10px 12px; border-radius: 8px; font-size: .9rem; }
+.alerta--exito { background: rgba(47, 191, 113, .12); color: var(--exito); border: 1px solid rgba(47, 191, 113, .35); }
+.alerta--error { background: rgba(239, 91, 91, .12); color: var(--error); border: 1px solid rgba(239, 91, 91, .35); }
+.alerta__cerrar { background: none; border: 0; color: inherit; font-size: 1.1rem; cursor: pointer; line-height: 1; }
+
+.acciones { display: flex; gap: 10px; justify-content: flex-end; }
+.boton {
+  display: inline-flex; align-items: center; gap: 8px; border: 0; border-radius: 8px;
+  padding: 10px 16px; font: inherit; font-weight: 600; cursor: pointer;
+  background: var(--acento); color: #fff;
+}
+.boton:hover:not(:disabled) { background: var(--acento-hover); }
+.boton:disabled { opacity: .5; cursor: not-allowed; }
+.boton--secundario { background: transparent; color: var(--texto); border: 1px solid var(--borde); }
+.boton--secundario:hover:not(:disabled) { background: var(--borde); }
+
+.spinner { width: 14px; height: 14px; border: 2px solid rgba(255,255,255,.4); border-top-color: #fff; border-radius: 50%; animation: girar .7s linear infinite; }
+@keyframes girar { to { transform: rotate(360deg); } }
